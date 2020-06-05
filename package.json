@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "./node_modules/.bin/babel src --out-file index.js",
+    "build": "babel src --out-dir lib --copy-files --ignore tests",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -13,13 +13,17 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
-    "jquery": "3.5.1"
+    "jquery": "3.5.1",
+    "react-google-maps": "^9.4.5",
+    "rc-time-picker": "^3.7.1"
   },
   "peerDependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
-    "jquery": "3.5.1"
+    "jquery": "3.5.1",
+    "react-google-maps": "^9.4.5",
+    "rc-time-picker": "^3.7.1"
   },
   "devDependencies": {
     "react-cosmos": "^5.0.0-beta.15",
