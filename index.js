@@ -156,56 +156,25 @@
 //     return found
 // };
 "use strict";
+// import React from 'react'
+// import './bar.css'
+//
+// const LoadingBar = () => <div className="loading">
+//     <div className="loading-bar"/>
+//     <div className="loading-bar"/>
+//     <div className="loading-bar"/>
+//     <div className="loading-bar"/>
+// </div>
+//
+// export default LoadingBar
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-require("./bar.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var LoadingBar = function LoadingBar() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "loading"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "loading-bar"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "loading-bar"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "loading-bar"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "loading-bar"
-  }));
-};
-
-var _default = LoadingBar;
-exports.default = _default;
+// import React from 'react'
+// import './line.css'
+//
+// const LoadingLine = () => <div className="loader"/>
+//
+// export default LoadingLine
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-require("./line.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var LoadingLine = function LoadingLine() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "loader"
-  });
-};
-
-var _default = LoadingLine;
-exports.default = _default;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
