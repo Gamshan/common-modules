@@ -1,7 +1,13 @@
-function randomNoGenerator(min, max) {
-  if(typeof(max) !== 'number' && typeof(min) !== 'number') {
-    min = 0;  max = 1;
-  }
- return (Math.random() * (max-min)) + min;
+import React, { Component } from 'react';
+
+export default class DummyComponent extends Component {
+
+    render () {
+
+        return (
+            <div>I am a dummy react npm module</div>
+        )
+
+    }
+
 }
-module.exports = randomNoGenerator;
