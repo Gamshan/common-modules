@@ -2,7 +2,7 @@
   "name": "common-modules",
   "version": "1.0.0",
   "description": "common-modules",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "babel src --out-dir lib --copy-files --ignore tests",
