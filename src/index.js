@@ -9,8 +9,9 @@ import Auth from "./common/Auth"
 import MapContainer from "./common/MapContainer"
 import LoadingLine from "./common/Loading/line"
 import LoadingBar from "./common/Loading/bar"
-import {getPathPrefix} from "./common/Functions"
+import {getPathPrefix,getValueByKey,getObjectByKey,getSafeValues,getImageExtension,isAllowedModules,isAllowedSubmenu} from "./common/Functions"
 
 
 
-export{ Dummy, Select,CheckBox,DatePicker,TimePicker,Input,Radio, Auth, MapContainer,LoadingBar,LoadingLine,getPathPrefix};
+export{ Dummy, Select,CheckBox,DatePicker,TimePicker,Input,Radio, Auth, MapContainer,LoadingBar,LoadingLine,getPathPrefix,
+    getValueByKey,getObjectByKey,getSafeValues,getImageExtension,isAllowedModules,isAllowedSubmenu};
