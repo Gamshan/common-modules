@@ -7,9 +7,10 @@ import Input from "./elements/Input"
 import Radio from "./elements/Radio"
 import Auth from "./common/Auth"
 import MapContainer from "./common/MapContainer"
-import Line from "./common/Loading/line"
-import Bar from "./common/Loading/bar"
+import LoadingLine from "./common/Loading/line"
+import LoadingBar from "./common/Loading/bar"
+import {getPathPrefix} from "./common/Functions"
 
 
 
-export{ Dummy, Select,CheckBox,DatePicker,TimePicker,Input,Radio, Auth, MapContainer,Line,Bar};
+export{ Dummy, Select,CheckBox,DatePicker,TimePicker,Input,Radio, Auth, MapContainer,LoadingBar,LoadingLine,getPathPrefix};
