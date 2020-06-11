@@ -1,6 +1,6 @@
 {
-  "short_name": "Wavy-Whips",
-  "name": "Wavy-Whips",
+  "short_name": "Common-Modules",
+  "name": "Common-Modules",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
