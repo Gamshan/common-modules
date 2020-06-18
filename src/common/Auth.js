@@ -43,7 +43,6 @@ class Auth {
 
 
     static getUserId () {
-        console.log(this.appName,'  sssssss')
         const user = JSON.parse(localStorage.getItem(this.appName+'-user'))
         return !!user && !!user._id ? user._id : ''
     }
