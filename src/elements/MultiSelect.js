@@ -27,10 +27,10 @@ class MultiSelect extends Component {
 
 
     }
-    onSelect(selectedList, selectedItem) {
-        this.state.value.push(selectedItem.id);
-        console.log(this.state.value);
 
+    onSelect(selectedList, selectedItem) {
+        let key = !!this.props.optionKey ? this.props.optionKey : '_id'
+        this.state.value.push(selectedItem[key]);
         this.props.handleOnChange(this.state.value,this.props.refer);
     }
 
@@ -55,7 +55,7 @@ class MultiSelect extends Component {
                         selectedValues={selectedValues} // Preselected value to persist in dropdown
                         onSelect={this.onSelect.bind(this)} // Function will trigger on select event
                         onRemove={this.onRemove.bind(this)} // Function will trigger on remove event
-                        displayValue={optionValue} // Property name to display in the dropdown options
+                        displayValue={!!optionValue ? optionValue : 'name' } // Property name to display in the dropdown options
                         id='multiSelect'
                         disabled={true}
                         placeholder={placeholder}
