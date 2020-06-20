@@ -2,6 +2,8 @@ import ReactDOM from "react-dom";
 import React from "react";
 import Auth from "./common/Auth";
 
+import Test from "./Test";
+
 Auth.appName = "common-modules"
 
-ReactDOM.render(<div>hello</div>, document.getElementById('root'));
+ReactDOM.render(<Test/>, document.getElementById('root'));

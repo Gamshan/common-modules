@@ -6,19 +6,16 @@ class MultiSelect extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value:[],
+            value: !!props.value ? props.value : [],
+            optionKey : !!props.optionKey ? props.optionKey : '_id',
             options:[{name: 'Srigar', id: 1},{name: 'Sam', id: 2},
                 {name: 'Abc', id: 3},{name: 'Sddfdsffd', id: 4}]
         };
 
-
-        if (props.value)
-            this.state.value = props.value
-
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this.state.value = nextProps.value ? nextProps.value : ''
+        this.state.value = nextProps.value ? nextProps.value : []
         this.forceUpdate()
 
     }
@@ -29,8 +26,7 @@ class MultiSelect extends Component {
     }
 
     onSelect(selectedList, selectedItem) {
-        let key = !!this.props.optionKey ? this.props.optionKey : '_id'
-        this.state.value.push(selectedItem[key]);
+        this.state.value.push(selectedItem[this.state.optionKey]);
         this.props.handleOnChange(this.state.value,this.props.refer);
     }
 
@@ -41,9 +37,20 @@ class MultiSelect extends Component {
 
         this.props.handleOnChange(this.state.value,this.props.refer);
     }
-    render () {
-        const { refer,label,selectedValues,placeholder, disabled ,items,optionKey,optionValue} = this.props
+    selectedValues(){
+        let array = []
+        this.state.value.map(key=>{
+            let valueObject =  this.props.items.find(item=> item[this.state.optionKey] === key );
+            array.push(valueObject)
+            });
+    return array;
+    }
 
+
+    render () {
+        const { refer,label,placeholder, disabled ,items,optionKey,optionValue} = this.props
+
+        console.log(this.state.value)
         return (
             <Fragment>
                 {label &&
@@ -52,7 +59,7 @@ class MultiSelect extends Component {
                 <div>
                     <Multiselect
                         options={items} // Options to display in the dropdown
-                        selectedValues={selectedValues} // Preselected value to persist in dropdown
+                        selectedValues={this.selectedValues()} // Preselected value to persist in dropdown
                         onSelect={this.onSelect.bind(this)} // Function will trigger on select event
                         onRemove={this.onRemove.bind(this)} // Function will trigger on remove event
                         displayValue={!!optionValue ? optionValue : 'name' } // Property name to display in the dropdown options
