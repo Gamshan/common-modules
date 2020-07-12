@@ -11,20 +11,26 @@ class Test extends Component {
             createReq:{subjects:['001']},
             schema : [
                 {
-                    type: 'select',
+                    type: 'SELECT',
                     refer : 'select1',
-                    options : [ {'key': "0001","value":"abc"},
+                    items : [ {'key': "0001","value":"abc"},
                         {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
 
                 },
                 {
-                    type: 'select',
-                    refer : 'select2',
-                    options : [ {'key': "0001","value":"abc"},
-                        {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}],
-                    dependency : {key : 'select1', value : '0001' }
+                    type: 'INPUT',
+                    refer : 'input',
+                    placeholder:"Please enter"
 
                 }
+                // {
+                //     type: 'INPUT',
+                //     refer : 'select2',
+                //     options : [ {'key': "0001","value":"abc"},
+                //         {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}],
+                //     isHidden : "req.select1 === '0001' "
+                //
+                // }
             ]
         };
 
@@ -48,15 +54,6 @@ class Test extends Component {
                         req={createReq}
                         handleOnChange={this.handleOnChange.bind(this)}
                         />
-
-                    {/*<Element*/}
-                        {/*type='select'*/}
-                        {/*req={createReq}*/}
-                        {/*refer = 'select2'*/}
-                        {/*options={[{'key': "001","value":"abc"},{'key': "002","value":"xxxxx",'vff':'gghghghjg'}]}*/}
-                        {/*handleOnChange={this.handleOnChange.bind(this)}*/}
-                        {/*isHidden = {createReq.select1 === '0001'}*/}
-                        {/*/>*/}
                 </div>
             </div>
         );

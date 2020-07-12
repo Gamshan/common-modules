@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import $ from 'jquery'
 import Select from "./Select";
+import Input from "./Input";
+import Radio from "./Radio";
+import Checkbox from "./CheckBox";
+import TimePicker from "./TimePicker";
+import DatePicker from "./DatePicker";
+import MultiSelect from "./MultiSelect";
 
 class Form extends Component {
 
@@ -9,10 +15,6 @@ class Form extends Component {
         this.state = {
           req : props.req
         };
-    }
-
-    componentDidMount() {
-        // $('#mySelect').selectpicker();
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -27,40 +29,78 @@ class Form extends Component {
 
     }
 
-    handleOnChange (e , value, refer) {
+    handleOnChange (value, refer) {
         let {req} = this.state;
         req[refer] = value;
 
-        let currentSchemeObj = this.props.schema.find(e=>e.dependency
-            &&  e.dependency.key === refer
-            && e.dependency.value !== value)
-        if (!!currentSchemeObj){
-            delete req[currentSchemeObj.refer]
-        }
+        this.props.schema.map(element=>{
+            if (element.isHidden && eval(element.isHidden)){
+                delete req[element.refer]
+            }
+        })
 
         this.setState({req})
-
-
-
         this.props.handleOnChange(req)
 
     }
 
+    isHiddenElement(schema){
+       if(!schema.isHidden)
+           return false;
+        let {req} = this.state;
+        return eval(schema.isHidden)
+    }
+
     render () {
-        const {schema,req} = this.props;
+        const {schema,req,} = this.props;
 
         return (
             <div>
-                {schema.map(e=>{
+                {schema.map(element=>{
+                    if (!this.isHiddenElement(element))
                          return <Fragment>
-                            {e.type === 'select' && (!e.dependency || e.dependency && req[e.dependency.key] === e.dependency.value) &&
-                                <Select
-                                    refer={e.refer}
-                                    handleOnChange = {this.handleOnChange.bind(this,e)}
-                                    items = {e.options}
-                                    value = {req[e.refer]}
+                            {element.type === 'SELECT' &&
+                                <Select {...element}
+                                        value = {req[element.refer]}
+                                        handleOnChange={this.handleOnChange.bind(this)}
                                 />
                             }
+                             {element.type === 'INPUT' &&
+                                 <Input{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
+                             {element.type === 'RADIO' &&
+                                 <Radio{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
+                             {element.type === 'CHECKBOX' &&
+                                 <Checkbox{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
+                             {element.type === 'DATE_PICKER' &&
+                                 <DatePicker{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
+                             {element.type === 'TIME_PICKER' &&
+                                 <TimePicker{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
+                             {element.type === 'MULTI_SELECT' &&
+                                 <MultiSelect{...element}
+                                       value = {req[element.refer]}
+                                       handleOnChange={this.handleOnChange.bind(this)}
+                                 />
+                             }
                 </Fragment>
             })}
 
