@@ -33,33 +33,37 @@ class Select extends Component {
             subValue = this.props.items[event.target.selectedIndex-1][this.props.subValueField]
 
         this.state.value = event.target.value;
+        console.log(refer)
         this.props.handleOnChange(event.target.value, refer,subValue);
         this.forceUpdate()
     }
 
     render () {
-        const { refer, items, label, disabled,value,optionKey,optionValue,placeholder } = this.props
+        const { refer, items, label, disabled,value,optionKey,optionValue,placeholder,hidden} = this.props
 
         return (
             <Fragment>
-                {label &&
-                    <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
+                {label && !hidden &&
+                <label htmlFor="sel1" style={{fontSize: '14px'}}>{label}</label>
                 }
-                <div onChange={event => this.handleOnChange(event, refer)}>
-                    <select  id="mySelect" data-show-content="true"
-                             disabled = {disabled ? disabled : false}
-                        className="form-control" value={this.state.value}>
-                        <option value="" >{placeholder ? placeholder : 'Select'}</option>
-                        {
-                            this.state.options.map((item,key)=> {
-                                return (
-                                    <option key={key} value={optionKey ? item[optionKey] : item.key} > {optionValue ? item[optionValue] : item.value} </option>
+                {!hidden &&
+                    <div onChange={event => this.handleOnChange(event, refer)}>
+                        <select id="mySelect" data-show-content="true"
+                                disabled={disabled ? disabled : false}
+                                className="form-control" value={this.state.value}>
+                            <option value="">{placeholder ? placeholder : 'Select'}</option>
+                            {
+                                this.state.options.map((item, key) => {
+                                    return (
+                                        <option key={key}
+                                                value={optionKey ? item[optionKey] : item.key}> {optionValue ? item[optionValue] : item.value} </option>
 
-                                )
-                            })
-                        }
-                    </select>
-                </div>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                }
             </Fragment>
         )
     }

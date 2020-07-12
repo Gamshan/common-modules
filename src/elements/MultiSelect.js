@@ -31,7 +31,7 @@ class MultiSelect extends Component {
     }
 
     onRemove(selectedList,removedItem) {
-        let index = this.state.value.indexOf(removedItem.id)
+        let index = this.state.value.indexOf(removedItem[this.state.optionKey])
         if (index > -1)
             this.state.value.splice(index,1);
 
