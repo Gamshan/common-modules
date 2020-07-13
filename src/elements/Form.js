@@ -21,12 +21,6 @@ class Form extends Component {
         if (nextProps.req)
             this.setState({req:nextProps.req})
 
-        // if (nextProps.isHidden){
-        //     let {req} = this.state
-        //     delete req[nextProps.refer]
-        //     this.setState({req})
-        // }
-
     }
 
     handleOnChange (value, refer) {
@@ -51,6 +45,13 @@ class Form extends Component {
         return eval(schema.isHidden)
     }
 
+    getItemsList(element){
+        if (element.items)
+            return element.items
+        return this.props.getItemsList(element.refer)
+
+    }
+
     render () {
         const {schema,req,} = this.props;
 
@@ -61,6 +62,7 @@ class Form extends Component {
                          return <Fragment>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
+                                        items={this.getItemsList(element) }
                                         value = {req[element.refer]}
                                         handleOnChange={this.handleOnChange.bind(this)}
                                 />
@@ -73,12 +75,14 @@ class Form extends Component {
                              }
                              {element.type === 'RADIO' &&
                                  <Radio{...element}
+                                       items={this.getItemsList(element) }
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
                              {element.type === 'CHECKBOX' &&
                                  <Checkbox{...element}
+                                       items={this.getItemsList(element) }
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />
@@ -97,6 +101,7 @@ class Form extends Component {
                              }
                              {element.type === 'MULTI_SELECT' &&
                                  <MultiSelect{...element}
+                                       items={this.getItemsList(element) }
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />

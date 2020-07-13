@@ -13,9 +13,10 @@ class Test extends Component {
                 {
                     type: 'SELECT',
                     refer : 'select1',
-                    items : [ {'key': "0001","value":"abc"},
-                        {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
-
+                },
+                {
+                    type: 'SELECT',
+                    refer : 'select2',
                 },
                 {
                     type: 'INPUT',
@@ -36,6 +37,16 @@ class Test extends Component {
 
     }
 
+    getItemsList(refer){
+
+        if(refer === 'select1')
+            return  [ {'key': "0001","value":"abc"},
+            {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
+
+        return [ {'key': "0001","value":"xxxxx"},
+            {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
+    }
+
     handleOnChange(createReq){
 
         this.setState({createReq})
@@ -53,6 +64,7 @@ class Test extends Component {
                         schema = {this.state.schema}
                         req={createReq}
                         handleOnChange={this.handleOnChange.bind(this)}
+                        getItemsList = {this.getItemsList.bind(this)}
                         />
                 </div>
             </div>
