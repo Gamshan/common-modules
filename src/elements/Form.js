@@ -7,6 +7,8 @@ import Checkbox from "./CheckBox";
 import TimePicker from "./TimePicker";
 import DatePicker from "./DatePicker";
 import MultiSelect from "./MultiSelect";
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 class Form extends Component {
 
@@ -34,7 +36,6 @@ class Form extends Component {
         })
 
         this.setState({req})
-        this.props.handleOnChange(req)
 
     }
 
@@ -56,10 +57,10 @@ class Form extends Component {
         const {schema,req,} = this.props;
 
         return (
-            <div>
+            <Fragment>
                 {schema.map(element=>{
                     if (!this.isHiddenElement(element))
-                         return <Fragment>
+                         return <label className={element.className ? element.className : 'col-3'}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
                                         items={this.getItemsList(element) }
@@ -106,10 +107,11 @@ class Form extends Component {
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
-                </Fragment>
+                </label>
             })}
 
-            </div>
+            </Fragment>
+
 
         )
     }

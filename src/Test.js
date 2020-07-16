@@ -17,6 +17,7 @@ class Test extends Component {
                 {
                     type: 'SELECT',
                     refer : 'select2',
+                    className : 'col-3'
                 },
                 {
                     type: 'INPUT',
@@ -47,25 +48,24 @@ class Test extends Component {
             {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
     }
 
-    handleOnChange(createReq){
-
-        this.setState({createReq})
-
-        console.log('createReq',createReq)
-
+    saveData(){
+        console.log(this.state.createReq)
     }
+
+
     render() {
         let {createReq} = this.state;
         return (
 
             <div className='row'>
-                <div className='col-md-4'>
+                <div className='col-md-12'>
                     <Form
                         schema = {this.state.schema}
                         req={createReq}
-                        handleOnChange={this.handleOnChange.bind(this)}
                         getItemsList = {this.getItemsList.bind(this)}
                         />
+
+                    <button onClick={this.saveData.bind(this)}>Save</button>
                 </div>
             </div>
         );
