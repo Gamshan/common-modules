@@ -2,22 +2,40 @@ import React, { Component } from 'react';
 import MultiSelect from "./elements/MultiSelect";
 import Select from "./elements/Select";
 import Form from "./elements/Form";
+import dataSource from "./dataSource";
 
 
 class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            createReq:{subjects:['001']},
-            schema : [
+            createReq: {},
+        };
+            this.schema = [
                 {
                     type: 'SELECT',
                     refer : 'select1',
+                    items : [ {'key': "_0001","value":"0001"},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'}],
+                    dependencies : ['select2'],
+                    placeholder : "Select 1"
                 },
                 {
                     type: 'SELECT',
                     refer : 'select2',
-                    className : 'col-3'
+                    className : 'col-3',
+                    isDynamicOptions : true,
+                   // isHidden : "req.select1 === '_0002' "
+                    placeholder : "Select 2",
+                    dependencies: ['select3'],
+                    items : dataSource[this.state.createReq.select1]
+                },
+                {
+                    type: 'SELECT',
+                    refer : 'select3',
+                    className : 'col-3',
+                    isDynamicOptions : true,
+                    placeholder : "Select 3"
                 },
                 {
                     type: 'INPUT',
@@ -25,27 +43,54 @@ class Test extends Component {
                     placeholder:"Please enter"
 
                 }
-                // {
-                //     type: 'INPUT',
-                //     refer : 'select2',
-                //     options : [ {'key': "0001","value":"abc"},
-                //         {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}],
-                //     isHidden : "req.select1 === '0001' "
-                //
-                // }
             ]
-        };
+
 
     }
 
-    getItemsList(refer){
 
-        if(refer === 'select1')
-            return  [ {'key': "0001","value":"abc"},
-            {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
+    getScgema(){
+        let req = this.state.createReq
+        console.log("here")
+        return  [
+            {
+                type: 'SELECT',
+                refer : 'select1',
+                items : [ {'key': "_0001","value":"0001"},
+                    {'key': "_0002","value":"0002",'vff':'gghghghjg'}],
+                dependencies : ['select2'],
+                placeholder : "Select 1"
+            },
+            {
+                type: 'SELECT',
+                refer : 'select2',
+                className : 'col-3',
+                isDynamicOptions : true,
+                // isHidden : "req.select1 === '_0002' "
+                placeholder : "Select 2",
+                dependencies: ['select3']
+            },
+            {
+                type: 'SELECT',
+                refer : 'select3',
+                className : 'col-3',
+                isDynamicOptions : true,
+                placeholder : "Select 3"
+            },
+            {
+                type: 'INPUT',
+                refer : 'input',
+                placeholder:"Please enter"
 
-        return [ {'key': "0001","value":"xxxxx"},
-            {'key': "0002","value":"xxxxx",'vff':'gghghghjg'}]
+            }
+        ];
+    }
+
+    getItemsList(refer) {
+        if (refer === 'select2')
+            return dataSource[this.state.createReq.select1];
+        if (refer === 'select3')
+            return dataSource[this.state.createReq.select2];
     }
 
     saveData(){
@@ -54,13 +99,14 @@ class Test extends Component {
 
 
     render() {
+        console.log('sssssss')
         let {createReq} = this.state;
         return (
 
             <div className='row'>
                 <div className='col-md-12'>
                     <Form
-                        schema = {this.state.schema}
+                        schema = {this.schema}
                         req={createReq}
                         getItemsList = {this.getItemsList.bind(this)}
                         />

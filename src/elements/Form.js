@@ -17,6 +17,22 @@ class Form extends Component {
         this.state = {
           req : props.req
         };
+        this.setDependencies(props)
+    }
+
+    setDependencies(props){
+        props.schema.forEach(element=>{
+            if(element.dependencies){
+                let array =[]
+                element.dependencies.forEach(dependencyRefer=>{
+                    let findElement = props.schema.find(e=>{return dependencyRefer === e.refer})
+                    if(findElement && findElement.dependencies) {
+                        array = array.concat(findElement.dependencies)
+                    }
+                })
+                element.dependencies = element.dependencies.concat(array)
+            }
+        })
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -29,11 +45,20 @@ class Form extends Component {
         let {req} = this.state;
         req[refer] = value;
 
-        this.props.schema.map(element=>{
-            if (element.isHidden && eval(element.isHidden)){
-                delete req[element.refer]
-            }
-        })
+        let element = this.props.schema.find(e => e.refer === refer);
+
+        if(element && element.dependencies && Array.isArray(element.dependencies)){
+            element.dependencies.forEach(dependRefer =>{
+                let dependentElement = this.props.schema.find(e => e.refer === dependRefer);
+                if (dependentElement &&
+                    ((dependentElement.isHidden && eval(dependentElement.isHidden)) ||
+                        dependentElement.isDynamicOptions)){
+                    this.getItemsList(dependentElement)
+                    if(req[dependentElement.refer])
+                        req[dependentElement.refer] = ""
+                }
+            })
+        }
 
         this.setState({req})
 
@@ -47,9 +72,7 @@ class Form extends Component {
     }
 
     getItemsList(element){
-        if (element.items)
-            return element.items
-        return this.props.getItemsList(element.refer)
+        element.items = this.props.getItemsList(element.refer)
 
     }
 
@@ -63,7 +86,7 @@ class Form extends Component {
                          return <label className={element.className ? element.className : 'col-3'}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
-                                        items={this.getItemsList(element) }
+                                        items={element.items}
                                         value = {req[element.refer]}
                                         handleOnChange={this.handleOnChange.bind(this)}
                                 />

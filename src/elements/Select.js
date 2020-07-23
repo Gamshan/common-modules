@@ -9,8 +9,9 @@ class Select extends Component {
             value:'',
             options:props.items ? props.items : []
         };
-        if (props.value)
-            this.state.value = props.value
+
+        if (props.value || props.value === "")
+                this.state.value = props.value
 
     }
 
@@ -19,7 +20,7 @@ class Select extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-       if (nextProps.value)
+       if (nextProps.value || nextProps.value === "")
            this.state.value = nextProps.value;
        if (nextProps.items)
            this.state.options = nextProps.items
@@ -33,7 +34,6 @@ class Select extends Component {
             subValue = this.props.items[event.target.selectedIndex-1][this.props.subValueField]
 
         this.state.value = event.target.value;
-        console.log(refer)
         this.props.handleOnChange(event.target.value, refer,subValue);
         this.forceUpdate()
     }
@@ -51,7 +51,7 @@ class Select extends Component {
                         <select id="mySelect" data-show-content="true"
                                 disabled={disabled ? disabled : false}
                                 className="form-control" value={this.state.value}>
-                            <option value="">{placeholder ? placeholder : 'Select'}</option>
+                            <option>{placeholder ? placeholder : 'Select'}</option>
                             {
                                 this.state.options.map((item, key) => {
                                     return (
