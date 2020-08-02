@@ -16,7 +16,7 @@ class Form extends Component {
         super(props);
         this.state = {
           req : props.req,
-            items : []
+          schema : props.schema
         };
         this.setDependencies(props)
     }
@@ -68,27 +68,28 @@ class Form extends Component {
         return eval(schema.isHidden)
     }
 
-    getItemsList(element){
+    getItemsList(index){
+        let {schema} = this.state
+        let element = schema[index]
         const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT'];
             if (elementTypes.indexOf(element.type) > -1) {
             let {items} = this.state;
-            items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
-            this.setState({items})
+            element.items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
+            this.setState({schema})
         }
     }
 
     render () {
-        const {schema,req,} = this.props;
-        const {items} = this.state
+        const {req} = this.props;
+        const {items,schema} = this.state
 
         return (
             <Fragment>
-                {schema.map(element=>{
+                {schema.map((element,index)=>{
                     if (!this.isHiddenElement(element))
-                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,element)}>
+                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,index)}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
-                                        items={items}
                                         value = {req[element.refer]}
                                         handleOnChange={this.handleOnChange.bind(this)}
                                 />
