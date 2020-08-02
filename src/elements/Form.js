@@ -15,7 +15,8 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          req : props.req
+          req : props.req,
+            items : []
         };
         this.setDependencies(props)
     }
@@ -50,11 +51,7 @@ class Form extends Component {
         if(element && element.dependencies && Array.isArray(element.dependencies)){
             element.dependencies.forEach(dependRefer =>{
                 let dependentElement = this.props.schema.find(e => e.refer === dependRefer);
-                if (dependentElement &&
-                    ((dependentElement.isHidden && eval(dependentElement.isHidden)) ||
-                        dependentElement.isDynamicOptions)){
-                    this.getItemsList(dependentElement)
-                    if(req[dependentElement.refer])
+                if (dependentElement && req[dependentElement.refer]){
                         req[dependentElement.refer] = ""
                 }
             })
@@ -72,21 +69,26 @@ class Form extends Component {
     }
 
     getItemsList(element){
-        element.items = this.props.getItemsList(element.refer)
-
+        const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT'];
+            if (elementTypes.indexOf(element.type) > -1) {
+            let {items} = this.state;
+            items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
+            this.setState({items})
+        }
     }
 
     render () {
         const {schema,req,} = this.props;
+        const {items} = this.state
 
         return (
             <Fragment>
                 {schema.map(element=>{
                     if (!this.isHiddenElement(element))
-                         return <label className={element.className ? element.className : 'col-3'}>
+                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,element)}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
-                                        items={element.items}
+                                        items={items}
                                         value = {req[element.refer]}
                                         handleOnChange={this.handleOnChange.bind(this)}
                                 />
@@ -99,16 +101,16 @@ class Form extends Component {
                              }
                              {element.type === 'RADIO' &&
                                  <Radio{...element}
-                                       items={this.getItemsList(element) }
+                                       items={items}
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
                              {element.type === 'CHECKBOX' &&
                                  <Checkbox{...element}
-                                       items={this.getItemsList(element) }
-                                       value = {req[element.refer]}
-                                       handleOnChange={this.handleOnChange.bind(this)}
+                                          items={items}
+                                          value = {req[element.refer]}
+                                          handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
                              {element.type === 'DATE_PICKER' &&
@@ -125,9 +127,9 @@ class Form extends Component {
                              }
                              {element.type === 'MULTI_SELECT' &&
                                  <MultiSelect{...element}
-                                       items={this.getItemsList(element) }
-                                       value = {req[element.refer]}
-                                       handleOnChange={this.handleOnChange.bind(this)}
+                                             items={items}
+                                             value = {req[element.refer]}
+                                             handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
                 </label>
