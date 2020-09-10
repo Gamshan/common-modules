@@ -20,7 +20,7 @@ class Input extends Component {
     }
 
     handleOnChange (event, refer) {
-        if(event.target.type ==='number'){
+        if(event.target.inputType ==='number'){
             this.state.value = parseInt(event.target.value);
             this.props.handleOnChange((event.target.value), refer);
         }else{
@@ -31,7 +31,7 @@ class Input extends Component {
         this.forceUpdate()
     }
     imposeMinMax(el){
-        if(el.target.value !== "" && el.target.type === 'number'){
+        if(el.target.value !== "" && el.target.inputType === 'number'){
             if(el.target.min && parseInt(el.value) < parseInt(el.target.min)){
                 el.target.value = el.target.min;
             }
@@ -41,7 +41,7 @@ class Input extends Component {
         }
     }
     render () {
-        const { refer,label,type,min,max,step,placeholder, disabled } = this.props
+        const { refer,label,inputType,min,max,step,placeholder, disabled } = this.props
 
         return (
             <Fragment>
@@ -49,9 +49,9 @@ class Input extends Component {
                     <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
                 }
                 <div onChange={event => this.handleOnChange(event, refer)}>
-                    {type !== 'textArea' &&
+                    {inputType !== 'textArea' &&
                     <input
-                        type={type ? type : 'text'}
+                        type={inputType ? inputType : 'text'}
                         step={step}
                         min={min}
                         max={max}
@@ -62,7 +62,7 @@ class Input extends Component {
                         value={this.state.value}/>
                     }
 
-                    {type === 'textArea' &&
+                    {inputType === 'textArea' &&
                     <textarea
                         className="form-control"
                         placeholder={placeholder}
