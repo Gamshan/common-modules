@@ -65,3 +65,21 @@ export const isAllowedSubmenu = function (allowedRoles) {
     const found = allowedRoles.some(role=> userRoles.indexOf(role) >= 0)
     return found
 };
+
+export const  printDiv = function (elementId,paperWidth, windowHeight,windowWidth) {
+
+
+    var css = `@media print { @page {size: 5in 5in ;} body {display: block; font: 12pt "Tahoma" ; width: ${paperWidth ? paperWidth : '4in'}; height: auto;}}`
+
+    const printableElements = document.getElementById(elementId);
+    var WinPrint = window.open('', '_blank', `height=${windowHeight ? windowHeight : 600},width=${windowWidth ? windowWidth : 600},scrollbars=yes`);
+    WinPrint.open()
+    WinPrint.document.write('<html><head><title>::Bill::</title><style>' + css + '</style></head><body>');
+    WinPrint.document.write(printableElements.innerHTML);
+    WinPrint.document.write('</body></html>');
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+
+}
