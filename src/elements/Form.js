@@ -8,6 +8,7 @@ import TimePicker from "./TimePicker";
 import DatePicker from "./DatePicker";
 import MultiSelect from "./MultiSelect";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import MyTypeahead from "./MyTypeahead";
 
 
 class Form extends Component {
@@ -71,7 +72,7 @@ class Form extends Component {
     getItemsList(index){
         let {schema} = this.state
         let element = schema[index]
-        const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT'];
+        const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT',"TYPEAHEAD"];
             if (elementTypes.indexOf(element.type) > -1) {
             let {items} = this.state;
             element.items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
@@ -132,6 +133,11 @@ class Form extends Component {
                                              value = {req[element.refer]}
                                              handleOnChange={this.handleOnChange.bind(this)}
                                  />
+                             }
+                             {element.type === 'TYPEAHEAD' &&
+                                <MyTypeahead{...element}
+                                         handleOnChange={this.handleOnChange.bind(this)}
+                             />
                              }
                 </label>
             })}

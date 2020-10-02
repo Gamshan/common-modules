@@ -3,6 +3,7 @@ import MultiSelect from "./elements/MultiSelect";
 import Select from "./elements/Select";
 import Form from "./elements/Form";
 import dataSource from "./dataSource";
+import MyTypeahead from "./elements/MyTypeahead"
 
 
 class Test extends Component {
@@ -48,7 +49,14 @@ class Test extends Component {
                     refer : 'input',
                     placeholder:"Please enter"
 
-                }
+                },
+                {
+                    type: 'TYPEAHEAD',
+                    refer : 'typeahead',
+                    items : [ {'key': "_0001","value":"0001"},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'}],
+                    placeholder : "Typeahead"
+                },
             ]
 
 
@@ -72,6 +80,10 @@ class Test extends Component {
         console.log(this.state.createReq)
     }
 
+    handleOnChange(value,refer){
+        console.log(value,refer)
+    }
+
 
     render() {
         console.log('sssssss')
@@ -85,7 +97,6 @@ class Test extends Component {
                         req={createReq}
                         getItemsList = {this.getItemsList.bind(this)}
                         />
-
                     <button onClick={this.saveData.bind(this)}>Save</button>
                 </div>
             </div>
