@@ -78,10 +78,13 @@ class Test extends Component {
 
     saveData(){
         console.log(this.state.createReq)
+        this.setState({createReq:{}})
     }
 
     handleOnChange(value,refer){
-        console.log(value,refer)
+        let {createReq} = this.state;
+        createReq[refer] = value
+        this.setState({createReq})
     }
 
 
@@ -97,6 +100,13 @@ class Test extends Component {
                         req={createReq}
                         getItemsList = {this.getItemsList.bind(this)}
                         />
+                    <Select refer='select'
+                            items ={[ {'key': "_0001","value":"0001"},
+                    {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
+                            value={createReq.select}
+                            handleOnChange = {this.handleOnChange.bind(this)}
+
+                    />
                     <button onClick={this.saveData.bind(this)}>Save</button>
                 </div>
             </div>

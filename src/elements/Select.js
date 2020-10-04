@@ -13,6 +13,9 @@ class Select extends Component {
         if (props.value || props.value === "")
                 this.state.value = props.value
 
+
+
+
     }
 
     componentDidMount() {
@@ -22,6 +25,8 @@ class Select extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
        if (nextProps.value || nextProps.value === "")
            this.state.value = nextProps.value;
+       if (!nextProps.value)
+           this.state.value = "";
        if (nextProps.items)
            this.state.options = nextProps.items
         this.forceUpdate()
@@ -51,7 +56,7 @@ class Select extends Component {
                         <select id="mySelect" data-show-content="true"
                                 disabled={disabled ? disabled : false}
                                 className="form-control" value={this.state.value}>
-                            <option>{placeholder ? placeholder : 'Select'}</option>
+                            <option style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
                             {
                                 this.state.options.map((item, key) => {
                                     return (
