@@ -57,6 +57,21 @@ class Test extends Component {
                         {'key': "_0002","value":"0002",'vff':'gghghghjg'}],
                     placeholder : "Typeahead"
                 },
+
+                {
+                    type: 'RADIO',
+                    refer : 'radio',
+                    className : 'col-6',
+                    label : "Select",
+                    inline: true,
+                    items : [ {'key': "_0001","value":"0001"},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
+                        {'key': "_0002","value":"0002",'vff':'gghghghjg'}
+                        ],
+                },
             ]
 
 
@@ -100,13 +115,13 @@ class Test extends Component {
                         req={createReq}
                         getItemsList = {this.getItemsList.bind(this)}
                         />
-                    <Select refer='select'
-                            items ={[ {'key': "_0001","value":"0001"},
-                    {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
-                            value={createReq.select}
-                            handleOnChange = {this.handleOnChange.bind(this)}
+                    {/*<Select refer='select'*/}
+                            {/*items ={[ {'key': "_0001","value":"0001"},*/}
+                    {/*{'key': "_0002","value":"0002",'vff':'gghghghjg'}]}*/}
+                            {/*value={createReq.select}*/}
+                            {/*handleOnChange = {this.handleOnChange.bind(this)}*/}
 
-                    />
+                    {/*/>*/}
                     <button onClick={this.saveData.bind(this)}>Save</button>
                 </div>
             </div>

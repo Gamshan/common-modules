@@ -103,14 +103,12 @@ class Form extends Component {
                              }
                              {element.type === 'RADIO' &&
                                  <Radio{...element}
-                                       items={items}
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />
                              }
                              {element.type === 'CHECKBOX' &&
                                  <Checkbox{...element}
-                                          items={items}
                                           value = {req[element.refer]}
                                           handleOnChange={this.handleOnChange.bind(this)}
                                  />
@@ -129,7 +127,6 @@ class Form extends Component {
                              }
                              {element.type === 'MULTI_SELECT' &&
                                  <MultiSelect{...element}
-                                             items={items}
                                              value = {req[element.refer]}
                                              handleOnChange={this.handleOnChange.bind(this)}
                                  />
