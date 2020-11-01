@@ -46,15 +46,13 @@ class Radio extends Component {
 
                                 return (
                                     <div className={inline ? 'row form-check-inline':'row form-check'} onChange={event => this.handleOnChange(event, refer)}>
-                                        <div className="col-sm-1">
+                                        <div className="col-sm-12">
                                             <input type="radio"
                                                    value={item.key}
                                                    disabled={this.state.disabled}
                                                    name={refer}
                                                    checked={this.state.value === item.key}/>
-                                        </div>
-                                        <div className="col-sm-8">
-                                            &nbsp;{item.value}
+                                            <span> &nbsp;&nbsp;{item.value}</span>
                                         </div>
                                     </div>
 
