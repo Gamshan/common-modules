@@ -47,6 +47,8 @@ class Form extends Component {
         let {req} = this.state;
         req[refer] = value;
 
+        console.log(refer,value)
+
         let element = this.props.schema.find(e => e.refer === refer);
 
         if(element && element.dependencies && Array.isArray(element.dependencies)){
@@ -81,8 +83,8 @@ class Form extends Component {
     }
 
     render () {
-        const {req} = this.props;
-        const {items,schema} = this.state
+        const {req,refer} = this.props;
+        const {schema} = this.state
 
         return (
             <Fragment>
@@ -103,6 +105,7 @@ class Form extends Component {
                              }
                              {element.type === 'RADIO' &&
                                  <Radio{...element}
+                                       name={refer ? refer +  '_' + element.refer : element.refer}
                                        value = {req[element.refer]}
                                        handleOnChange={this.handleOnChange.bind(this)}
                                  />

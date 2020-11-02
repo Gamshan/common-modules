@@ -31,7 +31,7 @@ class Radio extends Component {
     }
 
     render () {
-        const { refer, items, label ,value,inline } = this.props
+        const { refer, items, label ,name,inline } = this.props
 
         return (
             <Fragment>
@@ -50,7 +50,7 @@ class Radio extends Component {
                                             <input type="radio"
                                                    value={item.key}
                                                    disabled={this.state.disabled}
-                                                   name={refer}
+                                                   name={name ? name : refer}
                                                    checked={this.state.value === item.key}/>
                                             <span> &nbsp;&nbsp;{item.value}</span>
                                         </div>

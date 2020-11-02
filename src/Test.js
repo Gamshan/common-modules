@@ -66,12 +66,8 @@ class Test extends Component {
                     inline: true,
                     items : [ {'key': "_0001","value":"0001"},
                         {'key': "_0002","value":"0002",'vff':'gghghghjg'},
-                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
-                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
-                        {'key': "_0002","value":"0002",'vff':'gghghghjg'},
-                        {'key': "_0002","value":"0002",'vff':'gghghghjg'}
                         ],
-                },
+                }
             ]
 
 
@@ -111,6 +107,7 @@ class Test extends Component {
             <div className='row'>
                 <div className='col-md-12'>
                     <Form
+                        refer='form1'
                         schema = {this.schema}
                         req={createReq}
                         getItemsList = {this.getItemsList.bind(this)}
