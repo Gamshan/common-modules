@@ -19,6 +19,7 @@ class Form extends Component {
           req : props.req,
           schema : props.schema
         };
+        console.log('componentWillReceiveProps ', props)
         this.setDependencies(props)
     }
 
@@ -38,8 +39,11 @@ class Form extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.req)
+        if (nextProps.req){
+            if(nextProps.schema && nextProps.schema.length > 0)
+                nextProps.schema.map(element=>{this.getItemsList(element)})
             this.setState({req:nextProps.req})
+        }
 
     }
 
@@ -62,6 +66,8 @@ class Form extends Component {
 
         this.setState({req})
 
+
+
     }
 
     isHiddenElement(schema){
@@ -71,14 +77,10 @@ class Form extends Component {
         return eval(schema.isHidden)
     }
 
-    getItemsList(index){
-        let {schema} = this.state
-        let element = schema[index]
+    getItemsList(element){
         const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT',"TYPEAHEAD"];
             if (elementTypes.indexOf(element.type) > -1) {
-            let {items} = this.state;
             element.items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
-            this.setState({schema})
         }
     }
 
@@ -88,9 +90,9 @@ class Form extends Component {
 
         return (
             <Fragment>
-                {schema.map((element,index)=>{
+                {schema.map((element)=>{
                     if (!this.isHiddenElement(element))
-                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,index)}>
+                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,element)}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
                                         value = {req[element.refer]}

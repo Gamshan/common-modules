@@ -70,9 +70,15 @@ class Test extends Component {
                 }
             ]
 
-
+        this.setValues()
     }
 
+    setValues(){
+        setTimeout(()=>{
+            this.setState({ createReq: { select1: "_0001", select2: "aaaaa" }})
+        },2000)
+
+    }
     getItemsList(refer) {
         console.log("Ohhh" , refer)
 
