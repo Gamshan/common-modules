@@ -10,7 +10,7 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            createReq: {},
+            createReq: {input:0},
         };
             this.schema = [
                 {
@@ -47,7 +47,8 @@ class Test extends Component {
                 {
                     type: 'INPUT',
                     refer : 'input',
-                    placeholder:"Please enter"
+                    placeholder:"Please enter",
+                    inputType:'number'
 
                 },
                 {

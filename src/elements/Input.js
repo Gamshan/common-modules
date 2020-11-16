@@ -14,14 +14,14 @@ class Input extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this.state.value = nextProps.value ? nextProps.value : ''
+        this.state.value = nextProps.value ? nextProps.value : nextProps.inputType === 'number' ? 0 : ''
         this.forceUpdate()
 
     }
 
     handleOnChange (event, refer) {
         if(event.target.inputType ==='number'){
-            this.state.value = parseInt(event.target.value);
+            console.log()
             this.props.handleOnChange((event.target.value), refer);
         }else{
             this.state.value = event.target.value;
