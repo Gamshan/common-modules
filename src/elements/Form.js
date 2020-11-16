@@ -19,7 +19,6 @@ class Form extends Component {
           req : props.req,
           schema : props.schema
         };
-        console.log('componentWillReceiveProps ', props)
         this.setDependencies(props)
     }
 
@@ -41,7 +40,7 @@ class Form extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps.req){
             if(nextProps.schema && nextProps.schema.length > 0)
-                nextProps.schema.map(element=>{this.getItemsList(element)})
+                nextProps.schema.map((e,index)=>{this.getItemsList(index)})
             this.setState({req:nextProps.req})
         }
 
@@ -65,9 +64,6 @@ class Form extends Component {
         }
 
         this.setState({req})
-
-
-
     }
 
     isHiddenElement(schema){
@@ -77,10 +73,13 @@ class Form extends Component {
         return eval(schema.isHidden)
     }
 
-    getItemsList(element){
+    getItemsList(index){
+        let {schema} = this.state
+        let element = schema[index]
         const elementTypes = ['SELECT', 'RADIO', 'CHECKBOX', 'MULTI_SELECT',"TYPEAHEAD"];
-            if (elementTypes.indexOf(element.type) > -1) {
+        if (elementTypes.indexOf(element.type) > -1) {
             element.items =  element.isDynamicOptions || !element.items ?  this.props.getItemsList(element.refer) : element.items;
+            this.setState({schema})
         }
     }
 
@@ -90,9 +89,9 @@ class Form extends Component {
 
         return (
             <Fragment>
-                {schema.map((element)=>{
+                {schema.map((element,index)=>{
                     if (!this.isHiddenElement(element))
-                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,element)}>
+                         return <label className={element.className ? element.className : 'col-3'} onFocus={this.getItemsList.bind(this,index)}>
                             {element.type === 'SELECT' &&
                                 <Select {...element}
                                         value = {req[element.refer]}
