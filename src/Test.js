@@ -10,7 +10,7 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            createReq: {input:0},
+            createReq: {input : 7},
         };
             this.schema = [
                 {
@@ -81,8 +81,6 @@ class Test extends Component {
 
     }
     getItemsList(refer) {
-        console.log("Ohhh" , refer)
-
         if (refer === 'select2' && dataSource[this.state.createReq.select1])
             return dataSource[this.state.createReq.select1];
         if (refer === 'select3' && dataSource[this.state.createReq.select2])
@@ -96,7 +94,7 @@ class Test extends Component {
 
     saveData(){
         console.log(this.state.createReq)
-        this.setState({createReq:{}})
+        //this.setState({createReq:{}})
     }
 
     handleOnChange(value,refer){
@@ -107,7 +105,6 @@ class Test extends Component {
 
 
     render() {
-        console.log('sssssss')
         let {createReq} = this.state;
         return (
 

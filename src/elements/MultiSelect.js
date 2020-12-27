@@ -50,7 +50,6 @@ class MultiSelect extends Component {
     render () {
         const { refer,label,placeholder, disabled ,items,optionKey,optionValue} = this.props
 
-        console.log(this.state.value)
         return (
             <Fragment>
                 {label &&

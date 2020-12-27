@@ -50,8 +50,6 @@ class Form extends Component {
         let {req} = this.state;
         req[refer] = value;
 
-        console.log(refer,value)
-
         let element = this.props.schema.find(e => e.refer === refer);
 
         if(element && element.dependencies && Array.isArray(element.dependencies)){
