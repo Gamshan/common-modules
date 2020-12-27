@@ -15,9 +15,8 @@ class Input extends Component {
 
     componentWillReceiveProps(nextProps, nextContext) {
         // console.log('nextProps',nextProps.value)
-        // this.state.value = nextProps.value ? nextProps.value : nextProps.value === "0" ? 0 :  ''
-        // this.forceUpdate()
-
+        this.state.value = nextProps.value ? nextProps.value : nextProps.value === 0 ? 0 :  ''
+        this.forceUpdate()
     }
 
     handleOnChange (event, refer) {
