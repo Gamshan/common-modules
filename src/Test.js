@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState} from 'react';
 import MultiSelect from "./elements/MultiSelect";
 import Select from "./elements/Select";
 import Form from "./elements/Form";
@@ -6,13 +6,11 @@ import dataSource from "./dataSource";
 import MyTypeahead from "./elements/MyTypeahead"
 
 
-class Test extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            createReq: {input : 7},
-        };
-            this.schema = [
+const Test = ()=> {
+
+    const [createReq, setCreateReq] = useState({input : 7});
+
+    const schema = [
                 {
                     type: 'SELECT',
                     refer : 'select1',
@@ -71,20 +69,21 @@ class Test extends Component {
                 }
             ]
 
-        this.setValues()
-    }
+    useEffect(()=>{
+        setValues()
+    },[])
 
-    setValues(){
+    const setValues = () =>{
         setTimeout(()=>{
-            this.setState({ createReq: { select1: "_0001", select2: "aaaaa" }})
+            setCreateReq({ select1: "_0001", select2: "aaaaa" })
         },2000)
 
     }
-    getItemsList(refer) {
-        if (refer === 'select2' && dataSource[this.state.createReq.select1])
-            return dataSource[this.state.createReq.select1];
-        if (refer === 'select3' && dataSource[this.state.createReq.select2])
-            return dataSource[this.state.createReq.select2];
+    const getItemsList = (refer) => {
+        if (refer === 'select2' && dataSource[createReq.select1])
+            return dataSource[createReq.select1];
+        if (refer === 'select3' && dataSource[createReq.select2])
+            return dataSource[createReq.select2];
         if (refer === 'selectM')
             return  [ {'key': "_0001","value":"0001"},
                 {'key': "_0002","value":"0002",'vff':'gghghghjg'}]
@@ -92,42 +91,37 @@ class Test extends Component {
         return []
     }
 
-    saveData(){
-        console.log(this.state.createReq)
+    const saveData = () =>{
+        console.log(createReq)
         //this.setState({createReq:{}})
     }
 
-    handleOnChange(value,refer){
-        let {createReq} = this.state;
+    const handleOnChange = (value,refer)=>{
         createReq[refer] = value
-        this.setState({createReq})
+        setCreateReq(createReq)
     }
 
-
-    render() {
-        let {createReq} = this.state;
         return (
 
             <div className='row'>
                 <div className='col-md-12'>
                     <Form
                         refer='form1'
-                        schema = {this.schema}
+                        schema = {schema}
                         req={createReq}
-                        getItemsList = {this.getItemsList.bind(this)}
+                        getItemsList = {getItemsList}
                         />
-                    {/*<Select refer='select'*/}
-                            {/*items ={[ {'key': "_0001","value":"0001"},*/}
-                    {/*{'key': "_0002","value":"0002",'vff':'gghghghjg'}]}*/}
-                            {/*value={createReq.select}*/}
-                            {/*handleOnChange = {this.handleOnChange.bind(this)}*/}
+                    <Select refer='selectCombo'
+                            items ={[ {'key': "_0001","value":"0001"},
+                                    {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
+                            value={createReq.selectCombo}
+                            handleOnChange ={handleOnChange}
 
-                    {/*/>*/}
-                    <button onClick={this.saveData.bind(this)}>Save</button>
+                    />
+                    <button onClick={saveData}>Save</button>
                 </div>
             </div>
         );
-    }
 }
 
 export default Test
