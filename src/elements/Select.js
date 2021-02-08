@@ -44,7 +44,7 @@ class Select extends Component {
     }
 
     render () {
-        const { refer, items, label, disabled,value,optionKey,optionValue,placeholder,hidden} = this.props
+        const { refer, items,className, label, disabled,value,optionKey,optionValue,placeholder,hidden} = this.props
 
         return (
             <Fragment>
@@ -54,8 +54,9 @@ class Select extends Component {
                 {!hidden &&
                     <div onChange={event => this.handleOnChange(event, refer)}>
                         <select id="mySelect" data-show-content="true"
+                                className={`form-control ${className}`}
                                 disabled={disabled ? disabled : false}
-                                className="form-control" value={this.state.value}>
+                                value={this.state.value}>
                             <option style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
                             {
                                 this.state.options.map((item, key) => {
