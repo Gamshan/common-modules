@@ -52,10 +52,10 @@ class Select extends Component {
                 <label htmlFor="sel1" style={{fontSize: '14px'}}>{label}</label>
                 }
                 {!hidden &&
-                    <div onChange={event => this.handleOnChange(event, refer)}>
                         <select id="mySelect" data-show-content="true"
                                 className={`form-control ${className}`}
                                 disabled={disabled ? disabled : false}
+                                onChange={event => this.handleOnChange(event, refer)}
                                 value={this.state.value}>
                             <option style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
                             {
@@ -68,7 +68,6 @@ class Select extends Component {
                                 })
                             }
                         </select>
-                    </div>
                 }
             </Fragment>
         )
