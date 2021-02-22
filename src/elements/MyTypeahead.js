@@ -36,7 +36,7 @@ class MyTypeahead extends Component {
     }
 
     render () {
-        const { refer, items, label, placeholder,optionKey,optionValue,caseSensitive } = this.props
+        const { refer, items, label, placeholder,optionKey,hidden,optionValue,caseSensitive } = this.props
         const {value} = this.state
         return (
             <Fragment className='bg-light'>
