@@ -1,51 +1,60 @@
 import React, { Component, Fragment } from 'react'
-import { Typeahead } from 'react-bootstrap-typeahead';
+import {Typeahead} from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-
 class MyTypeahead extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            selected:[],
-            options: props.items ? props.items : []
+            value:'',
+            options:props.items ? props.items : []
         };
-
+        if (props.value)
+            this.state.value = props.value
 
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.value)
+            this.state.value = nextProps.value;
+        else
+            this.state.value = ''
+
         if (nextProps.items)
             this.state.options = nextProps.items
         this.forceUpdate()
 
     }
 
-    handleOnChange (refer,selected) {
-        this.setState({selected : selected})
-        let optionKey = this.props.optionKey ? this.props.optionKey : 'key';
-        if(selected && selected.length > 0)
-            this.props.handleOnChange(selected[0][optionKey], refer);
-
+    handleOnChange (event, refer) {
+        if(event[0])
+            this.props.handleOnChange(event[0], refer);
+        // this.setState({selected : selected})
+        // let optionKey = this.props.optionKey ? this.props.optionKey : 'key';
+        // if(selected && selected.length > 0)
+        //     this.props.handleOnChange(selected[0][optionKey], refer);
     }
 
     render () {
-        const { refer, label, disabled,value,optionKey,optionValue,placeholder,hidden } = this.props
+        const { refer, items, label, placeholder,optionKey,optionValue,caseSensitive } = this.props
+        const {value} = this.state
         return (
-            <Fragment>
-                {label && !hidden &&
-                    <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
+            <Fragment className='bg-light'>
+                {label &&
+                <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
                 }
-                {!hidden &&
+                <div onChange={event => this.handleOnChange(event, refer)}>
                     <Typeahead
                         id={refer}
-                        labelKey={optionValue ? optionValue : 'value'}
-                        onChange={this.handleOnChange.bind(this, refer)}
-                        options={this.state.options}
+                        selected={value ? [value] : []}
+                        style={{width:100,backgroundColor:'gray'}}
                         placeholder={placeholder}
-                        selected={this.state.selected}
+                        onChange={event => this.handleOnChange(event, refer)}
+                        caseSensitive={caseSensitive}
+                        options={items}
+                        labelKey={option => `${option[optionValue ? optionValue : 'value']}`}
                     />
-                }
+                </div>
             </Fragment>
         )
     }
