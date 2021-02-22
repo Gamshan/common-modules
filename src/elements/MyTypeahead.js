@@ -40,21 +40,23 @@ class MyTypeahead extends Component {
         const {value} = this.state
         return (
             <Fragment className='bg-light'>
-                {label &&
-                <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
+                {label && !hidden &&
+                    <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
                 }
+                {!hidden &&
                 <div onChange={event => this.handleOnChange(event, refer)}>
                     <Typeahead
                         id={refer}
                         selected={value ? [value] : []}
-                        style={{width:100,backgroundColor:'gray'}}
                         placeholder={placeholder}
                         onChange={event => this.handleOnChange(event, refer)}
                         caseSensitive={caseSensitive}
                         options={items}
                         labelKey={option => `${option[optionValue ? optionValue : 'value']}`}
+
                     />
                 </div>
+                }
             </Fragment>
         )
     }
