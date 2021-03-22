@@ -4,6 +4,8 @@ import Select from "./elements/Select";
 import Form from "./elements/Form";
 import dataSource from "./dataSource";
 import MyTypeahead from "./elements/MyTypeahead"
+import DatePicker from "./elements/TKDatePicker";
+import _ from 'lodash'
 
 
 const Test = ()=> {
@@ -97,8 +99,9 @@ const Test = ()=> {
     }
 
     const handleOnChange = (value,refer)=>{
+        console.log('hereeeee',value,refer)
         createReq[refer] = value
-        setCreateReq(createReq)
+        setCreateReq({...createReq})
     }
 
         return (
@@ -118,6 +121,7 @@ const Test = ()=> {
                             handleOnChange ={handleOnChange}
 
                     />
+                    <DatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker}/>
                     <button onClick={saveData}>Save</button>
                 </div>
             </div>

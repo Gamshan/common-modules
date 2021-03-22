@@ -27,12 +27,7 @@ class MyTypeahead extends Component {
     }
 
     handleOnChange (event, refer) {
-        if(event[0])
             this.props.handleOnChange(event[0], refer);
-        // this.setState({selected : selected})
-        // let optionKey = this.props.optionKey ? this.props.optionKey : 'key';
-        // if(selected && selected.length > 0)
-        //     this.props.handleOnChange(selected[0][optionKey], refer);
     }
 
     render () {

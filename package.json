@@ -19,7 +19,9 @@
     "multiselect-react-dropdown": "^1.5.0",
     "bootstrap": "^4.2.1",
     "popper.js": "^1.11.0",
-    "react-bootstrap-typeahead": "^5.1.1"
+    "react-bootstrap-typeahead": "^5.1.1",
+    "react-datepicker": "^3.6.0",
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "react": "^16.10.2",
@@ -27,7 +29,9 @@
     "react-scripts": "3.2.0",
     "jquery": "3.5.1",
     "react-google-maps": "^9.4.5",
-    "rc-time-picker": "^3.7.1"
+    "rc-time-picker": "^3.7.1",
+    "react-datepicker": "^3.6.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "react-cosmos": "^5.0.0-beta.15",
