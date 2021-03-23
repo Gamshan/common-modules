@@ -1,27 +1,35 @@
 import React, {Component, Fragment, useState} from 'react'
 import DatePicker from "react-datepicker";
+import moment from 'moment'
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const TKDatePicker = (props) => {
 
-    const {refer, label, min, max, placeholder, date,handleOnChange,value,dateFormat} = props
+    const {refer, label, min, max, placeholder,handleOnChange,value,dateFormat,returnFormat} = props
+
+
+    const [date, setDate] = useState(value ? new Date(value) : new Date());
+
 
     const initialProps = {
-        dateFormat : 'dd/MM/yyyy',
-        ...props
+        dateFormat :  'yyyy-MM-dd',
+        ...dateFormat
     }
 
-    const  handleDateSelect = () => {
+    const  handleDateSelect = (val) => {
+    };
 
+    const  handleCalendarClose = () => {
+        const returnValue = returnFormat && moment(date).format(returnFormat) ?
+            moment(date).format(returnFormat) : date
+        handleOnChange(returnValue,refer)
     };
 
     const handleDateChange = (val) =>{
-        handleOnChange(val,refer)
+        setDate(val)
     };
 
-
-    console.log(value)
         return (
             <Fragment>
                 {label &&
@@ -29,9 +37,10 @@ const TKDatePicker = (props) => {
                 }
                 <div>
                     <DatePicker
-                        selected={value}
+                        selected={date}
                         onSelect={handleDateSelect} //when day is clicked
                         onChange={handleDateChange} //only when value has changed
+                        onCalendarClose={handleCalendarClose}
                         {...initialProps}
                     />
                 </div>

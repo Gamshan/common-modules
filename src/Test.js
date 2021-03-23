@@ -6,11 +6,12 @@ import dataSource from "./dataSource";
 import MyTypeahead from "./elements/MyTypeahead"
 import DatePicker from "./elements/TKDatePicker";
 import _ from 'lodash'
+import moment from 'moment'
 
 
 const Test = ()=> {
 
-    const [createReq, setCreateReq] = useState({input : 7});
+    const [createReq, setCreateReq] = useState({input : 7,datePicker:"2020-03-22"});
 
     const schema = [
                 {
@@ -72,7 +73,7 @@ const Test = ()=> {
             ]
 
     useEffect(()=>{
-        setValues()
+        //setValues()
     },[])
 
     const setValues = () =>{
@@ -121,7 +122,8 @@ const Test = ()=> {
                             handleOnChange ={handleOnChange}
 
                     />
-                    <DatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker}/>
+                    <DatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker} dareFormat="yyyy-MM-dd"
+                                returnFormat='YYYY-MM-DD'/>
                     <button onClick={saveData}>Save</button>
                 </div>
             </div>
