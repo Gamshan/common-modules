@@ -13,9 +13,10 @@ import MapContainer from "./common/MapContainer"
 import LoadingLine from "./common/Loading/line"
 import LoadingBar from "./common/Loading/bar"
 import TKDatePicker from "./elements/TKDatePicker"
+import TKCheckBox from "./elements/TKCheckBox"
 import {getPathPrefix,getValueByKey,getObjectByKey,getSafeValues,getImageExtension,isAllowedModules,isAllowedSubmenu,printDiv} from "./common/Functions"
 
 
 
 export{ Select,CheckBox,DatePicker,TimePicker,Input,Radio,MyTypeahead, Auth, MapContainer,LoadingBar,LoadingLine,getPathPrefix,
-    getValueByKey,getObjectByKey,getSafeValues,getImageExtension,isAllowedModules,isAllowedSubmenu,MultiSelect,Form,printDiv,TKDatePicker};
+    getValueByKey,getObjectByKey,getSafeValues,getImageExtension,isAllowedModules,isAllowedSubmenu,MultiSelect,Form,printDiv,TKDatePicker,TKCheckBox};

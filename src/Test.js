@@ -7,11 +7,12 @@ import MyTypeahead from "./elements/MyTypeahead"
 import DatePicker from "./elements/TKDatePicker";
 import _ from 'lodash'
 import moment from 'moment'
+import TKCheckBox from "./elements/TKCheckBox";
 
 
 const Test = ()=> {
 
-    const [createReq, setCreateReq] = useState({input : 7,datePicker:"2020-03-22"});
+    const [createReq, setCreateReq] = useState({input : 7});
 
     const schema = [
                 {
@@ -105,6 +106,9 @@ const Test = ()=> {
         setCreateReq({...createReq})
     }
 
+    console.log(createReq.delivered)
+
+
         return (
 
             <div className='row'>
@@ -124,6 +128,13 @@ const Test = ()=> {
                     />
                     <DatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker} dareFormat="yyyy-MM-dd"
                                 returnFormat='YYYY-MM-DD'/>
+
+                    <TKCheckBox refer='delivered'
+                                value={createReq.delivered}
+                                items={[ {'key': "_0001","value":"0001"},
+                                    {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
+                                handleOnChange={handleOnChange}/>
+
                     <button onClick={saveData}>Save</button>
                 </div>
             </div>

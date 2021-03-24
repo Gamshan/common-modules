@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useState} from 'react'
+import React, {Component, Fragment, useEffect, useState} from 'react'
 import DatePicker from "react-datepicker";
 import moment from 'moment'
 
@@ -10,6 +10,10 @@ const TKDatePicker = (props) => {
 
 
     const [date, setDate] = useState(value ? new Date(value) : new Date());
+
+    useEffect(()=>{
+        handleCalendarClose()
+    },[])
 
 
     const initialProps = {
