@@ -1,8 +1,7 @@
 import React, {Component, Fragment, useEffect, useState} from 'react'
 import DatePicker from "react-datepicker";
 import moment from 'moment'
-
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 const TKDatePicker = (props) => {
 
@@ -42,6 +41,7 @@ const TKDatePicker = (props) => {
                 <div>
                     <DatePicker
                         selected={date}
+                        className="form-control"
                         onSelect={handleDateSelect} //when day is clicked
                         onChange={handleDateChange} //only when value has changed
                         onCalendarClose={handleCalendarClose}
