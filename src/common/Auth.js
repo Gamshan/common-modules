@@ -36,6 +36,18 @@ class Auth {
         return !!user && !!user.userType ? user.userType : ''
     }
 
+
+    static isAdmin() {
+        const user = JSON.parse(localStorage.getItem(this.appName+'-user'))
+        return !!user ? !!user.isAdmin : false;
+    }
+
+    static getGroups(){
+        const user = JSON.parse(localStorage.getItem(this.appName+'-user'))
+        return !!user && !!user.groups ? user.groups  : []
+
+    };
+
     static clearAll () {
         localStorage.removeItem(this.appName+'-token')
         localStorage.removeItem(this.appName+'-user')
