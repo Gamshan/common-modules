@@ -14,6 +14,11 @@ const TKDatePicker = (props) => {
         handleCalendarClose()
     },[])
 
+    useEffect(()=>{
+        if(value)
+            setDate(new Date(value))
+    },[value])
+
 
     const initialProps = {
         dateFormat :  'yyyy-MM-dd',

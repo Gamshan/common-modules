@@ -4,7 +4,7 @@ import Select from "./elements/Select";
 import Form from "./elements/Form";
 import dataSource from "./dataSource";
 import MyTypeahead from "./elements/MyTypeahead"
-import DatePicker from "./elements/TKDatePicker";
+import TKDatePicker from "./elements/TKDatePicker";
 import _ from 'lodash'
 import moment from 'moment'
 import TKCheckBox from "./elements/TKCheckBox";
@@ -126,7 +126,7 @@ const Test = ()=> {
                             handleOnChange ={handleOnChange}
 
                     />
-                    <DatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker} dareFormat="yyyy-MM-dd"
+                    <TKDatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker} dateFormat="yyyy-MM-dd"
                                 returnFormat='YYYY-MM-DD'/>
 
                     <TKCheckBox refer='delivered'
