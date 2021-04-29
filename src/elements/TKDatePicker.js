@@ -21,8 +21,7 @@ const TKDatePicker = (props) => {
 
 
     const initialProps = {
-        dateFormat :  'yyyy-MM-dd',
-        ...dateFormat
+        dateFormat :  dateFormat ? dateFormat : 'yyyy-MM-dd',
     }
 
     const  handleDateSelect = (val) => {

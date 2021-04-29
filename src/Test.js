@@ -126,8 +126,10 @@ const Test = ()=> {
                             handleOnChange ={handleOnChange}
 
                     />
-                    <TKDatePicker refer='datePicker' handleOnChange = {handleOnChange} value={createReq.datePicker} dateFormat="yyyy-MM-dd"
-                                returnFormat='YYYY-MM-DD'/>
+                    <TKDatePicker refer='datePicker'
+                                  handleOnChange = {handleOnChange}
+                                  value={createReq.datePicker} dateFormat="dd-MM-yyyy"
+                                  returnFormat='YYYY-MM-DD'/>
 
                     <TKCheckBox refer='delivered'
                                 value={createReq.delivered}
