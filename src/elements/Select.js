@@ -38,8 +38,9 @@ class Select extends Component {
         if(this.props.subValueField && this.props.items[event.target.selectedIndex-1])
             subValue = this.props.items[event.target.selectedIndex-1][this.props.subValueField]
 
-        this.state.value = event.target.value;
-        this.props.handleOnChange(event.target.value, refer,subValue);
+        this.state.value = event.target.value !== '_EMPTY_' ? event.target.value : undefined;
+        console.log('event',event.target.value)
+        this.props.handleOnChange(this.state.value, refer,subValue);
         this.forceUpdate()
     }
 
@@ -57,7 +58,7 @@ class Select extends Component {
                                 disabled={disabled ? disabled : false}
                                 onChange={event => this.handleOnChange(event, refer)}
                                 value={this.state.value}>
-                            <option value={undefined} style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
+                            <option value="_EMPTY_" style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
                             {
                                 this.state.options.map((item, key) => {
                                     return (
