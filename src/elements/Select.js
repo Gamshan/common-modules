@@ -57,7 +57,7 @@ class Select extends Component {
                                 disabled={disabled ? disabled : false}
                                 onChange={event => this.handleOnChange(event, refer)}
                                 value={this.state.value}>
-                            <option style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
+                            <option value={undefined} style={{color:'gray'}} selected>{placeholder ? placeholder : 'Select'}</option>
                             {
                                 this.state.options.map((item, key) => {
                                     return (
