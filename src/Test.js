@@ -50,7 +50,8 @@ const Test = ()=> {
                     type: 'INPUT',
                     refer : 'input',
                     placeholder:"Please enter",
-                    inputType:'number'
+                    inputType:'textArea',
+                    rows:6
 
                 },
                 {

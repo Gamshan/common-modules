@@ -45,7 +45,7 @@ class Input extends Component {
     }
 
     render () {
-        const { refer, label,disabled, inputType, min, max, step, placeholder,className } = this.props
+        const { refer, label,disabled, inputType, min, max, step, placeholder,className,rows } = this.props
 
         return (
             <Fragment >
@@ -69,10 +69,12 @@ class Input extends Component {
 
                 {inputType === 'textArea' &&
                 <textarea
+                    rows={rows}
                     className="form-control"
                     placeholder={placeholder}
                     onChange={event => this.handleOnChange(event, refer)}
-                    value={this.state.value}/>
+                    value={this.state.value}
+                />
                 }
             </Fragment>
         )
