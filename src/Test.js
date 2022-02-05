@@ -10,6 +10,7 @@ import moment from 'moment'
 import TKCheckBox from "./elements/TKCheckBox";
 
 
+
 const Test = ()=> {
 
     const [createReq, setCreateReq] = useState({input : 7});
@@ -131,6 +132,21 @@ const Test = ()=> {
                                   handleOnChange = {handleOnChange}
                                   value={createReq.datePicker} dateFormat="dd-MM-yyyy"
                                   returnFormat='YYYY-MM-DD'/>
+
+                    {/*<MultiSelect*/}
+                        {/*refer='customer'*/}
+                        {/*options={[{name: 'Srigar', id: 1},{name: 'Sam', id: 2},*/}
+                            {/*{name: 'Abc', id: 3},{name: 'Sddfdsffd', id: 4}]} // Options to display in the dropdown*/}
+                        {/*selectedValues={[]} // Preselected value to persist in dropdown*/}
+                        {/*// onSelect={this.onSelect.bind(this)} // Function will trigger on select event*/}
+                        {/*// onRemove={this.onRemove.bind(this)} // Function will trigger on remove event*/}
+                        {/*//displayValue={!!optionValue ? optionValue : 'name' } // Property name to display in the dropdown options*/}
+                        {/*//id='multiSelect'*/}
+                        {/*onFocus={getItemsList}*/}
+                        {/*disabled={true}*/}
+                        {/*placeholder="Select customer"*/}
+                        {/*// handleOnChange={this.handleOnChange.bind(this)}*/}
+                    {/*/>*/}
 
                     <TKCheckBox refer='delivered'
                                 value={createReq.delivered}
