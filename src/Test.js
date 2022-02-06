@@ -8,6 +8,7 @@ import TKDatePicker from "./elements/TKDatePicker";
 import _ from 'lodash'
 import moment from 'moment'
 import TKCheckBox from "./elements/TKCheckBox";
+import Input from "./elements/Input";
 
 
 
@@ -121,6 +122,11 @@ const Test = ()=> {
                         req={createReq}
                         getItemsList = {getItemsList}
                         />
+                    <Input
+                        refer='username'
+                        handleOnChange={handleOnChange}
+                        value={createReq.username}
+                        placeholder='Username ...'/>
                     <Select refer='selectCombo'
                             items ={[ {'key': "_0001","value":"0001"},
                                     {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}

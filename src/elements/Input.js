@@ -9,7 +9,7 @@ class Input extends Component {
         }
         if (props.value)
             this.state.value = props.value
-
+        this.myRef = React.createRef();
     }
 
     componentWillReceiveProps (nextProps, nextContext) {
@@ -54,7 +54,7 @@ class Input extends Component {
                 }
                 {inputType !== 'textArea' &&
                 <input
-                    ref={refer}
+                    ref={this.myRef}
                     type={inputType ? inputType : 'text'}
                     step={step}
                     min={min}
