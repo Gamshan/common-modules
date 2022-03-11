@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect, useState} from 'react'
+import React, {Component, createRef, Fragment, useEffect, useState} from 'react'
 import DatePicker from "react-datepicker";
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css"
@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css"
 const TKDatePicker = (props) => {
 
     const {refer, label, min, max, placeholder,handleOnChange,value,dateFormat,returnFormat} = props
-    const myRef = React.createRef();
+    const myRef = createRef();
 
     const [date, setDate] = useState(value ? new Date(value) : new Date());
 
@@ -43,14 +43,13 @@ const TKDatePicker = (props) => {
                     <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
                 }
                 <div>
-                    <DatePicker
+                    <textarea
                         ref={myRef}
-                        selected={date}
+                        rows={4}
                         className="form-control"
-                        onSelect={handleDateSelect} //when day is clicked
-                        onChange={handleDateChange} //only when value has changed
-                        onCalendarClose={handleCalendarClose}
-                        {...initialProps}
+                        placeholder={placeholder}
+                        onChange={handleDateChange}
+                        value={value}
                     />
                 </div>
             </Fragment>
