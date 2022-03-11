@@ -69,6 +69,7 @@ class Input extends Component {
 
                 {inputType === 'textArea' &&
                 <textarea
+                    ref={this.myRef}
                     rows={rows}
                     className="form-control"
                     placeholder={placeholder}

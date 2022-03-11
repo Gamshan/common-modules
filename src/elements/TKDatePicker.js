@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css"
 const TKDatePicker = (props) => {
 
     const {refer, label, min, max, placeholder,handleOnChange,value,dateFormat,returnFormat} = props
-
+    const myRef = React.createRef();
 
     const [date, setDate] = useState(value ? new Date(value) : new Date());
 
@@ -44,6 +44,7 @@ const TKDatePicker = (props) => {
                 }
                 <div>
                     <DatePicker
+                        ref={myRef}
                         selected={date}
                         className="form-control"
                         onSelect={handleDateSelect} //when day is clicked

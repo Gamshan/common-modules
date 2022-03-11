@@ -12,6 +12,8 @@ class MyTypeahead extends Component {
         if (props.value)
             this.state.value = props.value
 
+        this.myRef = React.createRef();
+
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -41,6 +43,7 @@ class MyTypeahead extends Component {
                 {!hidden &&
                 <div onChange={event => this.handleOnChange(event, refer)}>
                     <Typeahead
+                        ref={this.myRef}
                         id={refer}
                         selected={value ? [value] : []}
                         placeholder={placeholder}
