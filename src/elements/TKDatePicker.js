@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import DatePicker from "react-datepicker";
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css"
@@ -8,16 +8,16 @@ const TKDatePicker = (props) => {
     const {refer, label, min, max, placeholder,handleOnChange,value,dateFormat,returnFormat} = props
 
 
-    const [date, setDate] = useState(value ? new Date(value) : new Date());
+    const [date, setDate] = React.useState(value ? new Date(value) : new Date());
 
-    useEffect(()=>{
-        handleCalendarClose()
-    },[])
-
-    useEffect(()=>{
-        if(value)
-            setDate(new Date(value))
-    },[value])
+    // useEffect(()=>{
+    //     handleCalendarClose()
+    // },[])
+    //
+    // useEffect(()=>{
+    //     if(value)
+    //         setDate(new Date(value))
+    // },[value])
 
 
     const initialProps = {
