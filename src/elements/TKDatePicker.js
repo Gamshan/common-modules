@@ -10,7 +10,7 @@ const TKDatePicker = (props) => {
         return (
             <div>
                 {label &&
-                    <label htmlFor="sel1" style={{fontSize:'14px'}}>"FUCKKK"</label>
+                    <label htmlFor="sel1" style={{fontSize:'14px'}}>{"FUCKKK"}</label>
                 }
                 <div>
                     {/*<DatePicker*/}
