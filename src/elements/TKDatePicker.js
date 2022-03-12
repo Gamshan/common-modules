@@ -1,6 +1,6 @@
 import React from 'react'
 // import DatePicker from "react-datepicker";
-// import moment from 'moment'
+import moment from 'moment'
 // import "react-datepicker/dist/react-datepicker.css"
 
 const TKDatePicker = (props) => {
@@ -9,9 +9,9 @@ const TKDatePicker = (props) => {
 
         return (
             <div>
-                {/*{label &&*/}
-                    <label htmlFor="sel1" style={{fontSize:'14px'}}>{'label'}</label>
-                {/*}*/}
+                {label &&
+                    <label htmlFor="sel1" style={{fontSize:'14px'}}>"FUCKKK"</label>
+                }
                 <div>
                     {/*<DatePicker*/}
                     {/*    ref={myRef}*/}
