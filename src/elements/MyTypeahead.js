@@ -41,7 +41,6 @@ class MyTypeahead extends Component {
                     <label htmlFor="sel1" style={{fontSize:'14px'}}>{label}</label>
                 }
                 {!hidden &&
-                <div onChange={event => this.handleOnChange(event, refer)}>
                     <Typeahead
                         ref={this.myRef}
                         id={refer}
@@ -53,7 +52,6 @@ class MyTypeahead extends Component {
                         labelKey={option => `${option[optionValue ? optionValue : 'value']}`}
 
                     />
-                </div>
                 }
             </Fragment>
         )
