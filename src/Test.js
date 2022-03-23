@@ -139,6 +139,16 @@ const Test = ()=> {
                                   value={createReq.datePicker} dateFormat="dd-MM-yyyy"
                                   returnFormat='YYYY-MM-DD'/>
 
+                    <MyTypeahead
+                        placeholder='Select supplier'
+                        handleOnChange={handleOnChange}
+                        refer='supplier'
+                        optionValue='name'
+                        items={[]}
+                        value={createReq.supplier}
+                        disabled={true}
+                    />
+
                     {/*<MultiSelect*/}
                         {/*refer='customer'*/}
                         {/*options={[{name: 'Srigar', id: 1},{name: 'Sam', id: 2},*/}

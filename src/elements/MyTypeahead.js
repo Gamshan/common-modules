@@ -42,6 +42,7 @@ class MyTypeahead extends Component {
                 }
                 {!hidden &&
                     <Typeahead
+                        {...this.props}
                         ref={this.myRef}
                         id={refer}
                         selected={value ? [value] : []}
