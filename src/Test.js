@@ -9,6 +9,8 @@ import _ from 'lodash'
 import moment from 'moment'
 import TKCheckBox from "./elements/TKCheckBox";
 import Input from "./elements/Input";
+import MapContainer from "./common/MapContainer";
+import {hydrate} from "react-dom";
 
 
 
@@ -169,6 +171,10 @@ const Test = ()=> {
                                 items={[ {'key': "_0001","value":"0001"},
                                     {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
                                 handleOnChange={handleOnChange}/>
+
+                    <MapContainer content={{longitude:80.0255 , latitude: 9.6615 }} apiKey="AIzaSyCkDdPGvazynTQLBpELhCAXalXxK0a3xC0" defaultZoom={15}
+                                  disableOnMarkerClick={true}
+                                  mapTypeId="hybrid"/>
 
                     <button onClick={saveData}>Save</button>
                 </div>

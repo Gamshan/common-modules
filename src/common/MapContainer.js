@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose, withStateHandlers } from "recompose";
 import { InfoWindow, withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps';
+import TKDatePicker from "../elements/TKDatePicker";
 
 
 const Map = compose(
@@ -16,24 +17,26 @@ const Map = compose(
         }),
 
         onMarkerClick : ({ isShowInfoWindow }) => (e) => ({
-                isShowInfoWindow:true
+                isShowInfoWindow: true
             }),
         onInfoCloseClick : ({ isShowInfoWindow }) => (e) => ({
             isShowInfoWindow:false
-        })
+        }),
+        options: {function (maps) { return { mapTypeId: "satellite" } }}
     }),
     withScriptjs,
     withGoogleMap
 )
 (props =>
     <GoogleMap
-        defaultZoom={12}
+        defaultZoom={props.defaultZoom}
         defaultCenter={{ lat: props.content.latitude ? props.content.latitude : 0, lng: props.content.longitude ? props.content.longitude: 0}}
         //onClick={props.onMapClick}
+        mapTypeId={props.mapTypeId}
     >
         {props.isMarkerShown && <Marker position={props.markerPosition} onClick={props.onMarkerClick}>
 
-            {props.isShowInfoWindow &&
+            {props.isShowInfoWindow &&  !props.disableOnMarkerClick &&
             <InfoWindow
                 onCloseClick={props.onInfoCloseClick}
                 key={`infowindow-${'id'}`}
@@ -74,23 +77,24 @@ const Map = compose(
     </GoogleMap>
 )
 
-export default class MapContainer extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+const MapContainer  = (props)=> {
 
-    render() {
-        console.log('ccccc',this.props.content)
+        const apiKey = props.apiKey || "AIzaSyC052ouc29GFiZfjpUxJ9-XUBW-ltoGvC8"
+
         return (
             <div style={{ height: '100%' }}>
                 <Map
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC052ouc29GFiZfjpUxJ9-XUBW-ltoGvC8"
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}`}
                     loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div style={{ height: `400px` }} />}
+                    containerElement={<div style={{ height: '100%' }} />}
                     mapElement={<div style={{ height: `100%` }} />}
-                    content = {this.props.content}
+                    content = {props.content}
+                    defaultZoom={props.defaultZoom || 12}
+                    mapTypeId={props.mapTypeId || "terrain"}
+                    disableOnMarkerClick={props.disableOnMarkerClick}
                 />
             </div>
         )
-    }
+
 }
+export default MapContainer
