@@ -8,7 +8,7 @@ const Map = compose(
     withStateHandlers((props) => ({
 
         isMarkerShown: true,
-        isShowInfoWindow:false,
+        isShowInfoWindow: props.isShowInfoWindow,
         markerPosition: {lat: props.content.latitude?props.content.latitude:0, lng: props.content.longitude ?props.content.longitude: 0}
     }), {
         onMapClick: ({ isMarkerShown }) => (e) => ({
@@ -36,7 +36,7 @@ const Map = compose(
     >
         {props.isMarkerShown && <Marker position={props.markerPosition} onClick={props.onMarkerClick}>
 
-            {props.isShowInfoWindow &&  !props.disableOnMarkerClick &&
+            {props.isShowInfoWindow &&
             <InfoWindow
                 onCloseClick={props.onInfoCloseClick}
                 key={`infowindow-${'id'}`}
@@ -48,25 +48,11 @@ const Map = compose(
                     }}}
                 visible={true}>
                 {/*<div style={{maxWidth : 800, width : 500}}>*/}
-                    <div style={{maxWidth : 400, width : 300}}>
-                        <div className='row ml-3 mr-3'>
-                            <h6 className='col-md-8'>
-                                {props.content.type}
-                            </h6>
-                            <h6 className='col-md-4 text-right'><span className='badge badge-success'>{props.content.status}</span>
-                            </h6>
-                    </div>
-                    <div className='row ml-3 mr-3'>
-                        <b className='col-md-12'>
-                            category : {props.content.category}
-                        </b>
-                    </div>
-                        <div className='row ml-3 mr-3'>
-                            <b className='col-md-12'>
-                               user : {props.content.category}
-                            </b>
-                        </div>
+
+                <div style={{maxWidth : props.infoWindowMaxWidth, width : props.infoWindowWidth}}>
+                    {props.infoWindowContent || <div/>}
                 </div>
+
 
             </InfoWindow>
             }
@@ -92,6 +78,10 @@ const MapContainer  = (props)=> {
                     defaultZoom={props.defaultZoom || 12}
                     mapTypeId={props.mapTypeId || "terrain"}
                     disableOnMarkerClick={props.disableOnMarkerClick}
+                    isShowInfoWindow={props.isShowInfoWindow}
+                    infoWindowContent={props.infoWindowContent}
+                    infoWindowWidth={props.infoWindowWidth || 300}
+                    infoWindowMaxWidth={props.infoWindowMaxWidth || 400}
                 />
             </div>
         )

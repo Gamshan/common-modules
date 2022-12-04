@@ -111,7 +111,9 @@ const Test = ()=> {
         setCreateReq({...createReq})
     }
 
-    console.log(createReq.delivered)
+    const someProps = {
+        greeting: '<React.Fragment>Hello<a href="/${name_profile}">Hello</a></React.Fragment>'
+    }
 
 
         return (
@@ -173,7 +175,17 @@ const Test = ()=> {
                                 handleOnChange={handleOnChange}/>
 
                     <MapContainer content={{longitude:80.0255 , latitude: 9.6615 }} apiKey="AIzaSyCkDdPGvazynTQLBpELhCAXalXxK0a3xC0" defaultZoom={15}
+                                  isShowInfoWindow={true}
                                   disableOnMarkerClick={true}
+                                  infoWindowContent={
+                                      <div className='row ml-3 mr-3'>
+                                          <h6 className='col-md-8'>
+                                             PU : <b></b>
+                                          </h6>
+
+                                      </div>
+                                  }
+
                                   mapTypeId="hybrid"/>
 
                     <button onClick={saveData}>Save</button>
