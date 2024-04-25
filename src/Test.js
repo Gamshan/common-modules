@@ -174,7 +174,7 @@ const Test = ()=> {
                                     {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
                                 handleOnChange={handleOnChange}/>
 
-                    <MapContainer content={{longitude:80.0255 , latitude: 9.6615 }} apiKey="AIzaSyCkDdPGvazynTQLBpELhCAXalXxK0a3xC0" defaultZoom={15}
+                    <MapContainer content={{longitude:80.0255 , latitude: 9.6615 }} apiKey="XXX" defaultZoom={15}
                                   isShowInfoWindow={true}
                                   disableOnMarkerClick={true}
                                   infoWindowContent={
