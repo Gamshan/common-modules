@@ -53,7 +53,9 @@ class Select extends Component {
                 <label htmlFor="sel1" style={{fontSize: '14px'}}>{label}</label>
                 }
                 {!hidden &&
-                        <select id="mySelect" data-show-content="true"
+                        <select
+                                {...this.props}
+                                id="mySelect" data-show-content="true"
                                 className={`form-control ${className}`}
                                 disabled={disabled ? disabled : false}
                                 onChange={event => this.handleOnChange(event, refer)}

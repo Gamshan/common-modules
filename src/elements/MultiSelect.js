@@ -57,6 +57,7 @@ class MultiSelect extends Component {
                 }
                 <div>
                     <Multiselect
+                        {...this.props}
                         options={items} // Options to display in the dropdown
                         selectedValues={this.selectedValues()} // Preselected value to persist in dropdown
                         onSelect={this.onSelect.bind(this)} // Function will trigger on select event

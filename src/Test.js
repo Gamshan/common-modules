@@ -132,6 +132,7 @@ const Test = ()=> {
                         value={createReq.username}
                         placeholder='Username ...'/>
                     <Select refer='selectCombo'
+                            style={{borderRadius:10}}
                             items ={[ {'key': "_0001","value":"0001"},
                                     {'key': "_0002","value":"0002",'vff':'gghghghjg'}]}
                             value={createReq.selectCombo}
